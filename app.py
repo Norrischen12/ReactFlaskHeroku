@@ -13,35 +13,35 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 @cross_origin()
 def index():
     # if request.method == "POST":
-    return send_from_directory(app.static_folder, 'index')
+    return send_from_directory(app.static_folder, 'index.html')
 
 
 @app.route("/members")
 @cross_origin()
 def members():
-    #arg1 = request.form.get('arg1')
-    #arg2_file = request.files['arg2']
+    arg1 = request.form.get('arg1')
+    arg2_file = request.files['arg2']
 
-    #upload_folder = 'uploads'
-    #os.makedirs(upload_folder, exist_ok=True)
-    #arg2_path = os.path.join(upload_folder, arg2_file.filename)
-    #arg2_file.save(arg2_path)
+    upload_folder = 'uploads'
+    os.makedirs(upload_folder, exist_ok=True)
+    arg2_path = os.path.join(upload_folder, arg2_file.filename)
+    arg2_file.save(arg2_path)
 
     # Execute the Python script with the provided arguments
-    #result = subprocess.check_output(
-        #['python', 'test.py', arg1, arg2_path], text=True)
-    #html_table = result.strip()
+    result = subprocess.check_output(
+        ['python', 'test.py', arg1, arg2_path], text=True)
+    html_table = result.strip()
     response_data = {
         #"arg1": arg1,
         #'arg2': arg2_file,
          #Include any other data that you want to send back to the frontend
         'message': 'hello',
         'status': 'passed',
-        #'arg1_result': arg1,
-        #'html_table': html_table
+        'arg1_result': arg1,
+        'html_table': html_table
     }
 
-    return 'Hello World'
+    return jsonify(response_data)
 
 
 if __name__ == "__main__":
