@@ -31,7 +31,7 @@ function App() {
 
     try {
       // Make the API request to your Flask server
-      const response = await fetch("http://localhost:5000/members", {
+      const response = await fetch("/members", {
         method: "POST",
         mode: "cors",
         body: formData,
