@@ -16,7 +16,7 @@ def index():
     return send_from_directory(app.static_folder, 'index.html')
 
 
-@app.route("/members", methods = ['POST'])
+@app.route("https://pacific-wave-83275-21d398a3a65c.herokuapp.com/members", methods = ['POST'])
 @cross_origin()
 def members():
     arg1 = request.form.get('arg1')
