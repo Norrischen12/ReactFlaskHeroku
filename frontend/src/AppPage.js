@@ -31,7 +31,7 @@ function App() {
 
     try {
       // Make the API request to your Flask server
-      const response = await fetch("https://pacific-wave-83275-21d398a3a65c.herokuapp.com/members", {
+      const response = await fetch("http://localhost:5000/members", {
         method: "POST",
         mode: "cors",
         body: formData,

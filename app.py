@@ -16,7 +16,7 @@ def index():
     return send_from_directory(app.static_folder, 'index.html')
 
 
-@app.route("/members")
+@app.route("/members", methods = ['POST'])
 @cross_origin()
 def members():
     arg1 = request.form.get('arg1')
