@@ -29,7 +29,7 @@ def members():
 
     # Execute the Python script with the provided arguments
     result = subprocess.check_output(
-        ['python', 'test.py', arg1, arg2_path], text=True)
+        ['python', 'NMSA_pipeline.py', arg1, arg2_path], text=True)
     html_table = result.strip()
     response_data = {
         #"arg1": arg1,

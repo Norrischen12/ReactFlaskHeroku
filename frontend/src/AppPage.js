@@ -3,13 +3,23 @@ import logo from "./logo.svg";
 import document_upload from "./document_upload.svg";
 import doc from "./doc.svg";
 import delete_icon from "./delete.svg";
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import * as S from "./App.styles";
+import LoadingCircle from './LoadingCircle';
+import { useNavigate } from 'react-router-dom';
+
+
+function FileVerification(fileName) {
+  const fileExtension = fileName.split('.').pop().toLowerCase();
+  return fileExtension === 'csv' || fileExtension === 'xlsx';
+}
 
 function App() {
-  const [selectedDate, setSelectedDate] = useState(""); // Add state for selectedDate
+  const navigate = useNavigate();
+  const [selectedDate, setSelectedDate] = useState(null); // Add state for selectedDate
   const [selectedFile, setSelectedFile] = useState(null); // Add state for selectedFile
   const [htmlTable, setHtmlTable] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
 
 
@@ -23,6 +33,7 @@ function App() {
   };
 
   const handleSubmit = async () => {
+    setIsLoading(true);
     // Create a data object to send the data
     const formData = new FormData();
 
@@ -31,7 +42,7 @@ function App() {
 
     try {
       // Make the API request to your Flask server
-      const response = await fetch("https://pacific-wave-83275-21d398a3a65c.herokuapp.com/members", {
+      const response = await fetch("http://localhost:5000/members", {
         method: "POST",
         mode: "cors",
         body: formData,
@@ -43,6 +54,10 @@ function App() {
         console.log("Result Data:", resultData);
         // Update your React state or UI with the resultData
         setHtmlTable(resultData.html_table);
+
+        const htmlData = encodeURIComponent(resultData.html_table)
+        console.log('Navigating to /table')
+        navigate(`/table?htmlData=${htmlData}`)
       } else {
         // Handle error response
         const errorData = await response.json();
@@ -54,6 +69,8 @@ function App() {
       // Handle any network or other errors
       console.error("Error:", error);
       // Display an error message to the user
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -115,7 +132,9 @@ function App() {
         </S.IconButton>
       </S.InfoContainer>
       <S.ButtonWrapper>
-        <S.SubmitButton onClick={handleSubmit}>Run Script</S.SubmitButton>
+        <S.SubmitButton onClick={handleSubmit}>
+          {isLoading ? <LoadingCircle /> : "Run Script"}
+        </S.SubmitButton>
       </S.ButtonWrapper>
       <div>
         {/* Render the HTML table */}

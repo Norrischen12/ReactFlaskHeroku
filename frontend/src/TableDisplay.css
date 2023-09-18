@@ -1,0 +1,73 @@
+body {
+    font-family: 'Intel', Arial, sans-serif;
+    margin: 20px;
+}
+
+label{
+    font-family: 'Intel', Arial, sans-serif;
+}
+
+h1 {
+    font-family: 'Intel', Arial, sans-serif;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    font-family: 'Intel', Arial, sans-serif;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 8px;
+    table-layout: fixed;
+}
+
+th{
+    cursor: pointer;
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+thead {
+    background-color: #2C78AE;
+    color: #FFFFFF;
+}
+
+/*tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}*/
+.controls {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.controls label {
+  margin-right: 10px;
+}
+
+.controls svg {
+  width: 10px;
+  height: 10px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.controls svg.active {
+  fill: #007bff; 
+}
+
+.icon {
+  width: 8px; /* Set the desired width */
+  height: 8px; /* Set the desired height */
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+

@@ -1,0 +1,22 @@
+.download-button {
+  background-color: #2c78ae;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  align-content: center;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: auto;
+  font-weight: bold;
+}
+
+.download-button:hover {
+  background-color: #007bff;
+}
+
+.download-icon{
+  width: 15px;
+  height: 15px;
+  margin-right:10px;
+  margin-top:auto;
+}
